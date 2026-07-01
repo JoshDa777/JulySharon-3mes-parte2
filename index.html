@@ -1,1 +1,1075 @@
-aun en desarrollo parte 2
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi Juli 💕</title>
+<style>
+  /* ========== RESET & BASE ========== */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+  
+  body {
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #FFF0F5 0%, #FFD1DC 30%, #FFB6C1 70%, #FFE4E1 100%);
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  /* ========== FLOATING HEARTS BG ========== */
+  .floating-hearts {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .floating-heart {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.15;
+    animation: floatHeart linear infinite;
+  }
+  @keyframes floatHeart {
+    0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0; }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% { transform: translateY(-10vh) rotate(720deg) scale(1.2); opacity: 0; }
+  }
+  
+  /* ========== CONTAINER ========== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* ========== HEADER ========== */
+  header {
+    text-align: center;
+    padding: 30px 20px 20px;
+    position: relative;
+  }
+  
+  .pixel-art-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .pixel-art-row canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  
+  header h1 {
+    font-size: 2.8em;
+    color: #C71585;
+    text-shadow: 3px 3px 0 #FF69B4, 0 0 20px rgba(255,105,180,0.3);
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+  }
+  header h1::after {
+    content: '💕';
+    font-size: 0.5em;
+    vertical-align: super;
+  }
+  header .subtitle {
+    font-size: 1.2em;
+    color: #DB7093;
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  header .contador {
+    margin-top: 12px;
+    font-size: 0.95em;
+    color: #C71585;
+    background: rgba(255,255,255,0.5);
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 20px;
+    border: 2px solid #FFB6C1;
+  }
+  
+  /* ========== DIVIDER PIXEL ========== */
+  .divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+  }
+  .divider canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .divider-line {
+    height: 4px;
+    width: 80px;
+    background: linear-gradient(90deg, transparent, #FF69B4, transparent);
+    border-radius: 2px;
+  }
+  
+  /* ========== CARTA PRINCIPAL ========== */
+  .carta-principal-wrapper {
+    margin: 20px auto;
+    max-width: 700px;
+    position: relative;
+  }
+  
+  .pixel-border {
+    background: white;
+    border-radius: 16px;
+    padding: 35px 30px;
+    position: relative;
+    box-shadow: 
+      0 0 0 4px #FF69B4,
+      0 0 0 8px #FFB6C1,
+      0 0 0 12px #FFD1DC,
+      0 8px 32px rgba(199,21,133,0.15);
+    transition: transform 0.3s ease;
+  }
+  .pixel-border:hover {
+    transform: translateY(-3px);
+  }
+  
+  .pixel-border .corner-pixel {
+    position: absolute;
+    width: 12px; height: 12px;
+    background: #FF1493;
+  }
+  .pixel-border .corner-pixel.tl { top: -6px; left: -6px; }
+  .pixel-border .corner-pixel.tr { top: -6px; right: -6px; }
+  .pixel-border .corner-pixel.bl { bottom: -6px; left: -6px; }
+  .pixel-border .corner-pixel.br { bottom: -6px; right: -6px; }
+  
+  .carta-principal-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+  }
+  .carta-principal-header canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .carta-principal-header h2 {
+    font-size: 1.6em;
+    color: #C71585;
+    flex: 1;
+  }
+  .carta-principal-header .fecha {
+    font-size: 0.9em;
+    color: #FF69B4;
+    background: #FFF0F5;
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid #FFB6C1;
+  }
+  
+  .carta-principal-contenido {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: #555;
+    white-space: pre-wrap;
+    font-family: 'Georgia', serif;
+    border-top: 2px dashed #FFD1DC;
+    padding-top: 15px;
+    margin-top: 5px;
+  }
+  .carta-principal-contenido::before {
+    content: '✉️';
+    display: block;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    opacity: 0.6;
+  }
+  
+  /* ========== SECTION TITLE ========== */
+  .section-title {
+    text-align: center;
+    margin: 40px 0 25px;
+  }
+  .section-title h2 {
+    font-size: 1.8em;
+    color: #C71585;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title h2 canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .section-title .sub {
+    color: #DB7093;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
+  /* ========== CARTAS DIARIAS GRID ========== */
+  .cartas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .carta-card {
+    background: white;
+    border-radius: 14px;
+    padding: 18px 15px;
+    box-shadow: 0 4px 15px rgba(199,21,133,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 3px solid #FFD1DC;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+  }
+  .carta-card:hover:not(.locked) {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255,105,180,0.2);
+    border-color: #FF69B4;
+  }
+  
+  .carta-card .dia-label {
+    font-size: 0.75em;
+    color: #FF69B4;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .carta-card .fecha-label {
+    font-size: 0.8em;
+    color: #DB7093;
+    margin-bottom: 8px;
+  }
+  .carta-card .card-titulo {
+    font-size: 1em;
+    font-weight: 700;
+    color: #C71585;
+    margin-bottom: 6px;
+  }
+  .carta-card .card-preview {
+    font-size: 0.85em;
+    color: #888;
+    line-height: 1.4;
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  
+  /* Locked state */
+  .carta-card.locked {
+    background: #F5F5F5;
+    border-color: #E0E0E0;
+    cursor: default;
+    opacity: 0.7;
+  }
+  .carta-card.locked .lock-icon {
+    font-size: 2em;
+    text-align: center;
+    margin: 15px 0 5px;
+  }
+  .carta-card.locked .card-titulo {
+    color: #AAA;
+  }
+  .carta-card.locked .card-preview {
+    color: #CCC;
+  }
+  .carta-card.locked::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 11px;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(200,200,200,0.1) 8px,
+      rgba(200,200,200,0.1) 16px
+    );
+  }
+  
+  /* Today special card */
+  .carta-card.today {
+    border-color: #FF1493;
+    box-shadow: 0 0 20px rgba(255,20,147,0.25);
+    animation: todayPulse 2s ease-in-out infinite;
+  }
+  @keyframes todayPulse {
+    0%, 100% { box-shadow: 0 0 15px rgba(255,20,147,0.2); }
+    50% { box-shadow: 0 0 30px rgba(255,20,147,0.4); }
+  }
+  .carta-card.today .today-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #FF1493;
+    color: white;
+    font-size: 0.65em;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    box-shadow: 0 2px 10px rgba(255,20,147,0.3);
+  }
+  
+  /* All unlocked celebration */
+  .all-unlocked-banner {
+    text-align: center;
+    background: linear-gradient(135deg, #FF69B4, #FF1493);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(255,20,147,0.3);
+    animation: bannerGlow 2s ease-in-out infinite;
+  }
+  @keyframes bannerGlow {
+    0%, 100% { box-shadow: 0 4px 20px rgba(255,20,147,0.3); }
+    50% { box-shadow: 0 4px 40px rgba(255,20,147,0.5); }
+  }
+  
+  /* ========== MODAL ========== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 550px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 35px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(199,21,133,0.2);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { transform: scale(0.9) translateY(20px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 1.8em;
+    color: #CCC;
+    cursor: pointer;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    line-height: 1;
+  }
+  .modal-close:hover { color: #FF1493; }
+  
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  .modal-header canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .modal-header h3 {
+    font-size: 1.4em;
+    color: #C71585;
+  }
+  .modal-fecha {
+    font-size: 0.85em;
+    color: #FF69B4;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed #FFD1DC;
+  }
+  .modal-body {
+    font-size: 1.05em;
+    line-height: 1.9;
+    color: #555;
+    white-space: pre-wrap;
+    font-family: 'Georgia', serif;
+  }
+  
+  /* ========== FOOTER ========== */
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 20px;
+  }
+  footer canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  footer p {
+    color: #DB7093;
+    font-size: 0.95em;
+    margin-top: 10px;
+  }
+  footer .footer-hearts {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+  }
+  
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    header h1 { font-size: 2em; }
+    .cartas-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .pixel-border { padding: 25px 18px; }
+    .carta-principal-header h2 { font-size: 1.3em; }
+    .modal-content { padding: 25px; margin: 10px; }
+  }
+  @media (max-width: 480px) {
+    body { padding: 10px; }
+    header h1 { font-size: 1.6em; }
+    .cartas-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .carta-card { min-height: 110px; padding: 12px; }
+    .pixel-border { padding: 18px 14px; }
+  }
+  
+  /* ========== SCROLLBAR ========== */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #FFF0F5; }
+  ::-webkit-scrollbar-thumb { background: #FFB6C1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #FF69B4; }
+</style>
+</head>
+<body>
+
+<!-- Floating Hearts Background -->
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<div class="container">
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="pixel-art-row">
+      <canvas id="heartLeft" width="80" height="80"></canvas>
+      <canvas id="heartMain" width="120" height="120"></canvas>
+      <canvas id="heartRight" width="80" height="80"></canvas>
+    </div>
+    <h1>Para mi Juli</h1>
+    <p class="subtitle">✨ 18 cartas de amor en pixel art ✨</p>
+    <p class="contador" id="contadorDias">Cargando...</p>
+  </header>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <canvas id="dividerFlower" width="32" height="32"></canvas>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== CARTA PRINCIPAL ===== -->
+  <section class="carta-principal-wrapper" id="cartaPrincipal">
+    <div class="pixel-border">
+      <div class="corner-pixel tl"></div>
+      <div class="corner-pixel tr"></div>
+      <div class="corner-pixel bl"></div>
+      <div class="corner-pixel br"></div>
+      
+      <div class="carta-principal-header">
+        <canvas id="smallHeart" width="40" height="40"></canvas>
+        <h2 id="principalTitulo">Para mi Juli 💕</h2>
+        <span class="fecha" id="principalFecha">1 de julio</span>
+      </div>
+      <div class="carta-principal-contenido" id="principalContenido">
+        Cargando...
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <canvas id="dividerFlower2" width="32" height="32"></canvas>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== CARTAS DIARIAS ===== -->
+  <section class="section-title">
+    <h2>
+      <canvas id="sectionHeart" width="36" height="36"></canvas>
+      Nuestras cartas diarias
+      <canvas id="sectionHeart2" width="36" height="36"></canvas>
+    </h2>
+    <p class="sub">Cada día una nueva sorpresa 💝</p>
+  </section>
+
+  <div id="allUnlockedBanner" class="all-unlocked-banner" style="display:none;">
+    🎉 ¡Todas las cartas están desbloqueadas! Disfruta de cada palabra 🎉
+  </div>
+
+  <div class="cartas-grid" id="cartasGrid">
+    <!-- Generado por JavaScript -->
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <canvas id="footerFlower" width="40" height="40"></canvas>
+      <div class="divider-line"></div>
+    </div>
+    <div style="display:flex; justify-content:center; gap:12px;">
+      <canvas id="footerHeart1" width="48" height="48"></canvas>
+      <canvas id="footerHeart2" width="48" height="48"></canvas>
+    </div>
+    <p>Hecho con todo mi amor para ti mi Juli 💕</p>
+    <div class="footer-hearts">
+      <span>💗</span><span>💖</span><span>💝</span><span>💖</span><span>💗</span>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-header">
+      <canvas id="modalHeart" width="36" height="36"></canvas>
+      <h3 id="modalTitulo">Título</h3>
+    </div>
+    <div class="modal-fecha" id="modalFecha">Fecha</div>
+    <div class="modal-body" id="modalContenido">Contenido</div>
+  </div>
+</div>
+
+<script>
+// ================================================================
+// 💖 EDIT AQUÍ - Tus cartas para Juli 💖
+// ================================================================
+// Instrucciones:
+// - Modifica solo los textos entre comillas en los campos "contenido"
+// - Puedes usar saltos de línea con \n dentro del texto
+// - Los títulos son opcionales, siéntete libre de personalizarlos
+// ================================================================
+
+const cartas = {
+  // ---- CARTA PRINCIPAL (Siempre visible) ----
+  principal: {
+    titulo: "Para mi mapachita peshosha 💕",
+    fecha: "1 de julio",
+    contenido: `Esta sera tu cartita de agradecimiento por nuestro tercer mesesito y tambien de introduccion :3
+    
+    Wenaaaaash, como estash mi juli peshosha, ay amorcito por donde empiezo, ahora mismo podrías estar viendo este mensaje por dos cosas, por nuestro 3er mes o por tu cumple, si estás en el de tu cumpleaños porfa vuelve a abrir todos los detallitos que espero que tenga mi regalito para ti, y bueno, sin mas que decir, te presento tu cartita de nuestro tercer mes amorcito
+
+    Ay amor, en estos tres mesesitos que han pasado e vivido muchas cositas contigo en muy poco tiempo
+    Son 3 mesesitos de enseñanzas
+    Son 3 mesesitos de amor y romance
+    Son 3 mesesitos de maduración
+    Son 3 mesesitos de felicidad
+    Son 3 mesesitos de malos momentos
+    Son 3 mesesitos de sentimientos
+    Son 3 mesesitos de pasos agarrados de la mano
+    Son 3 mesesitos de filosofía convertida en amor puro
+    Son 3 mesesitos de tu hermosura
+    Son 3 mesesitos de calma
+    Son 3 mesesitos de cariño
+    Son 3 mesesitos de escuchar esa vocesita con cariño
+    Son 3 mesesitos de ilusion
+    Son 3 mesesitos de sueños
+    Son 3 mesesitos de esperanzas
+    Son 3 mesesitos de promesas
+    Son 3 mesesitos de determinación
+    Son 3 mesesitos de motivación
+    Son 3 mesesitos con ganas de vernos
+    Son 3 mesesitos con ganas de romance y esa otra cosita "aja" XD
+    Son 3 mesesitos de compañia
+    Son 3 mesesitos con el amor de mi vida
+    Son 3 mesesitos... Con mi mapachita peshosha :3 y ay como te amo
+
+
+    Juli, ay amorcito no te imaginas como te amo, la cantidad de enamoramiento que tengo por ti, por lo tanto te tengo un regalito que se une con varios para hacer más que un simple regalo, es un evento de 17 días, desde hoy 2 de julio día de nuestro tercer mesesito, hasta el 19 de julio que es el día de cumpleaños de ti mi juli peshosha, será el cumpleaños de mi mapachita peshosha, espero que disfrutes de los pequeños detalles de tu regalito conjunto amorcito, espero te guste muchito mi amorcito, te amo mucho y quiero que sepas que siempre pero siempre sin falta estaré ahí por y para ti amorcito, sin falta alguna, estaré para ti, te amo mucho mi mapachita peshosha, en estos momentos te estará dando un gran abrazo muy fuerte mientras te chapo amorcito, cuídate mucho y cuida de esa carita tan boñita, te amo muchito mi juli peshosha, cuídate mi mapachita, suerte amorcito, mi yo del pasado que te está escribiendo esto te está extrañando mucho porque estás dormido tan mientras yo te hago tu regalito, así que descansa y sueña con toda una vida juntitos amor, que te vaya bien mi juli del futuro y también que te vaya bien mi juli que ahora está durmiendo, no te diré cuando escribo esto xd, pero ntp si e dormido bien gracias a que me das mucha calma, te amo muchito mi mapachita, feliz mes amorcito, te amo muchito, cuídate shi? Y dale un besito y mucho cariñito al pendejo de tu novio, osea yo jijiji, bueño, feliz 3er mesesito amorcito, cuídate, que te vaya bien mi juli, disfruta, chauuuuuuuu, te amo muchitoooooo mi mapachitaaaaaaaaaa 
+    Byeeeeeeeeee
+    :3
+    
+    Con todo mi amor,
+    Tu perezoso 💕`
+  },
+
+  // ---- CARTAS DIARIAS (2 al 19 de julio) ----
+  dias: {
+    // --- Julio 2 ---
+    2: {
+      titulo: "Día 1 - El comienzo",
+      contenido: `Wenaaaaaaaaaaaash, ya es 2 de juli amorcitoooooooooooo, feliz meeeeeeeeeees, te amo muchito mi mapachita peshoshaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, te amo mucho mi amorcito, espero que disfrutes de este pequeñito evento desde nuestro mesesito hasta el dia de tu cumple años :3
+
+      espero que disfrutes muchito de este regalito amorcito, y quiero que sepas que te amo muchito mi juli peshosha, te amo tantito que por ti lo daria todo, te daria cada parte de mi, mis respiros, mis latidos, mis alientos, mis pasos, mis sentimientos, mis pensamientos, toda mi alma completa y cada parte de mi cuerpo solamente para ti, yo soy tuyo mi amorcito peshosha, te amo muchito, espero disfrutes de este regalito, te amo muchito mi mapachita, por cierto te aviso que estas cartitas diarias es probable que sean un poquitito mas cortas que las esenciales que seran las de el mesesito y la de tu cumple, ashi que disfruta amorcito, van a eventualmente a aparecer otros regalitos secundarios que espero que tambien te gusten amorcito, te amo muchitoooooooo, disfrutaaaaa, nos vemos el dia siguienteeeeee, chauuuuuuuuuu
+      te amo muchito mi mapachitaaaa, te amo muchoooooooooooooooooooo, byeeeeeeeeeeeeeeeeee
+      :3
+      
+      
+      Esta es la primera carta diaria.`
+    },
+    // --- Julio 3 ---
+    3: {
+      titulo: "Día 2",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 3 DE JULIO]`
+    },
+    // --- Julio 4 ---
+    4: {
+      titulo: "Día 3",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 4 DE JULIO]`
+    },
+    // --- Julio 5 ---
+    5: {
+      titulo: "Día 4",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 5 DE JULIO]`
+    },
+    // --- Julio 6 ---
+    6: {
+      titulo: "Día 5",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 6 DE JULIO]`
+    },
+    // --- Julio 7 ---
+    7: {
+      titulo: "Día 6",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 7 DE JULIO]`
+    },
+    // --- Julio 8 ---
+    8: {
+      titulo: "Día 7",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 8 DE JULIO]`
+    },
+    // --- Julio 9 ---
+    9: {
+      titulo: "Día 8",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 9 DE JULIO]`
+    },
+    // --- Julio 10 ---
+    10: {
+      titulo: "Día 9",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 10 DE JULIO]`
+    },
+    // --- Julio 11 ---
+    11: {
+      titulo: "Día 10",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 11 DE JULIO]`
+    },
+    // --- Julio 12 ---
+    12: {
+      titulo: "Día 11",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 12 DE JULIO]`
+    },
+    // --- Julio 13 ---
+    13: {
+      titulo: "Día 12",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 13 DE JULIO]`
+    },
+    // --- Julio 14 ---
+    14: {
+      titulo: "Día 13",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 14 DE JULIO]`
+    },
+    // --- Julio 15 ---
+    15: {
+      titulo: "Día 14",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 15 DE JULIO]`
+    },
+    // --- Julio 16 ---
+    16: {
+      titulo: "Día 15",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 16 DE JULIO]`
+    },
+    // --- Julio 17 ---
+    17: {
+      titulo: "Día 16",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 17 DE JULIO]`
+    },
+    // --- Julio 18 ---
+    18: {
+      titulo: "Día 17",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 18 DE JULIO]`
+    },
+    // --- Julio 19 ---
+    19: {
+      titulo: "Día 18 - La última 💕",
+      contenido: `[ESCRIBE AQUÍ LA CARTA DEL DÍA 19 DE JULIO - LA ÚLTIMA]
+      
+      Esta es la última carta del proyecto.
+      
+      Espero que hayas disfrutado cada una de ellas.
+      Te quiero mucho. 💕`
+    }
+  }
+};
+
+// ================================================================
+// 💖 FIN DE LA SECCIÓN EDITABLE 💖
+// ================================================================
+
+
+
+// ================================================================
+// 🎨 PIXEL ART RENDERER
+// ================================================================
+
+const COLORS = {
+  pink1: '#FFD1DC',
+  pink2: '#FFB6C1',
+  pink3: '#FF69B4',
+  pink4: '#FF1493',
+  pink5: '#C71585',
+  white: '#FFF0F5',
+  dark: '#8B0A50'
+};
+
+const PATTERNS = {
+  // Heart 8x8
+  heart8: [
+    [0,0,1,1,0,0],
+    [0,1,1,1,1,0],
+    [1,1,1,1,1,1],
+    [1,1,1,1,1,1],
+    [1,1,1,1,1,1],
+    [0,1,1,1,1,0],
+    [0,0,1,1,0,0],
+    [0,0,0,0,0,0]
+  ],
+  // Heart 10x10 (larger)
+  heart10: [
+    [0,0,0,1,1,0,0,0],
+    [0,0,1,1,1,1,0,0],
+    [0,1,1,1,1,1,1,0],
+    [1,1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,1,1,1,0,0],
+    [0,0,0,1,1,0,0,0],
+    [0,0,0,0,0,0,0,0]
+  ],
+  // Flower 8x8
+  flower8: [
+    [0,0,0,1,1,0,0,0],
+    [0,0,1,1,1,1,0,0],
+    [0,1,1,1,1,1,1,0],
+    [1,1,1,0,0,1,1,1],
+    [1,1,1,0,0,1,1,1],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,1,1,1,0,0],
+    [0,0,0,1,1,0,0,0]
+  ],
+  // Small star 8x8
+  star8: [
+    [0,0,0,0,1,0,0,0],
+    [0,0,0,1,1,1,0,0],
+    [0,0,1,1,1,1,1,0],
+    [0,0,0,1,1,1,0,0],
+    [0,1,1,1,1,1,1,1],
+    [0,0,1,1,1,1,1,0],
+    [0,0,0,1,1,1,0,0],
+    [0,0,0,0,1,0,0,0]
+  ],
+  // Mini heart 6x6
+  heartMini: [
+    [0,1,1,0,0,0],
+    [1,1,1,1,0,0],
+    [1,1,1,1,1,0],
+    [0,1,1,1,1,0],
+    [0,0,1,1,0,0],
+    [0,0,0,0,0,0]
+  ]
+};
+
+function drawPixelPattern(canvasId, pattern, pixelSize, color1, color2, bgColor) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const rows = pattern.length;
+  const cols = pattern[0].length;
+  canvas.width = cols * pixelSize;
+  canvas.height = rows * pixelSize;
+  
+  // Clear
+  ctx.fillStyle = bgColor || 'transparent';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // Draw pixels
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (pattern[r][c] === 1) {
+        // Use gradient of colors based on position
+        const hue = r / rows;
+        ctx.fillStyle = hue < 0.5 ? color1 : color2;
+        ctx.fillRect(c * pixelSize, r * pixelSize, pixelSize, pixelSize);
+      }
+    }
+  }
+}
+
+function drawHeart8(canvasId, pixelSize) {
+  drawPixelPattern(canvasId, PATTERNS.heart8, pixelSize, COLORS.pink3, COLORS.pink4);
+}
+
+function drawHeart10(canvasId, pixelSize) {
+  drawPixelPattern(canvasId, PATTERNS.heart10, pixelSize, COLORS.pink3, COLORS.pink4);
+}
+
+function drawFlower8(canvasId, pixelSize) {
+  drawPixelPattern(canvasId, PATTERNS.flower8, pixelSize, COLORS.pink2, COLORS.pink3);
+}
+
+function drawStar8(canvasId, pixelSize) {
+  drawPixelPattern(canvasId, PATTERNS.star8, pixelSize, COLORS.pink3, COLORS.pink4);
+}
+
+function drawHeartMini(canvasId, pixelSize) {
+  drawPixelPattern(canvasId, PATTERNS.heartMini, pixelSize, COLORS.pink3, COLORS.pink4);
+}
+
+
+// ================================================================
+// 🎨 RENDER ALL PIXEL ART
+// ================================================================
+
+function renderPixelArt() {
+  drawHeart10('heartMain', 10);
+  drawHeart8('heartLeft', 8);
+  drawHeart8('heartRight', 8);
+  drawFlower8('dividerFlower', 4);
+  drawFlower8('dividerFlower2', 4);
+  drawHeartMini('smallHeart', 7);
+  drawHeartMini('sectionHeart', 6);
+  drawHeartMini('sectionHeart2', 6);
+  drawFlower8('footerFlower', 5);
+  drawHeart8('footerHeart1', 6);
+  drawHeart8('footerHeart2', 6);
+  drawHeartMini('modalHeart', 6);
+}
+
+
+// ================================================================
+// 📅 DATE LOGIC
+// ================================================================
+
+function getTodayInfo() {
+  const now = new Date();
+  // Usar UTC-5 (Colombia)
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  const colombia = new Date(utc - 5 * 3600000);
+  return {
+    year: colombia.getFullYear(),
+    month: colombia.getMonth() + 1,
+    day: colombia.getDate(),
+    full: colombia
+  };
+}
+
+function isToday(day, month = 7, year = 2026) {
+  const today = getTodayInfo();
+  return today.day === day && today.month === month && today.year === year;
+}
+
+function isUnlocked(day) {
+  const today = getTodayInfo();
+  // Si el año es mayor a 2026, todo desbloqueado
+  if (today.year > 2026) return true;
+  // Si el mes es mayor a julio, todo desbloqueado
+  if (today.year === 2026 && today.month > 7) return true;
+  // Si es julio de 2026
+  if (today.year === 2026 && today.month === 7) {
+    return today.day >= day;
+  }
+  // Si el año es menor a 2026, nada desbloqueado (excepto principal)
+  return false;
+}
+
+
+// ================================================================
+// 💖 LOAD LETTERS
+// ================================================================
+
+function cargarCartaPrincipal() {
+  const c = cartas.principal;
+  document.getElementById('principalTitulo').textContent = c.titulo;
+  document.getElementById('principalFecha').textContent = c.fecha;
+  document.getElementById('principalContenido').innerHTML = c.contenido.replace(/\n/g, '<br>');
+}
+
+function cargarCartasDiarias() {
+  const grid = document.getElementById('cartasGrid');
+  const dias = cartas.dias;
+  const today = getTodayInfo();
+  let unlockedCount = 0;
+  let totalCount = Object.keys(dias).length;
+  let allUnlocked = true;
+  
+  // Check if all are unlocked
+  for (let d = 2; d <= 19; d++) {
+    if (!isUnlocked(d)) { allUnlocked = false; break; }
+  }
+  
+  if (allUnlocked) {
+    document.getElementById('allUnlockedBanner').style.display = 'block';
+  }
+  
+  // Generate cards
+  for (let d = 2; d <= 19; d++) {
+    const data = dias[d];
+    if (!data) continue;
+    
+    const unlocked = isUnlocked(d);
+    const isTodayFlag = isToday(d);
+    if (unlocked) unlockedCount++;
+    
+    const card = document.createElement('div');
+    card.className = 'carta-card' + (unlocked ? '' : ' locked') + (isTodayFlag ? ' today' : '');
+    card.dataset.dia = d;
+    
+    const mes = 'julio';
+    let html = '';
+    
+    if (unlocked) {
+      // Preview: first 80 chars of content
+      let preview = data.contenido.replace(/\n/g, ' ').trim();
+      if (preview.length > 90) preview = preview.substring(0, 90) + '...';
+      if (preview.startsWith('[ESCRIBE')) preview = '💝 Haz clic para leer';
+      
+      html = `
+        <div class="dia-label">DÍA ${d - 1}</div>
+        <div class="fecha-label">${d} de ${mes}</div>
+        <div class="card-titulo">${data.titulo}</div>
+        <div class="card-preview">${preview}</div>
+        ${isTodayFlag ? '<div class="today-badge">✨ HOY</div>' : ''}
+      `;
+    } else {
+      html = `
+        <div class="lock-icon">🔒</div>
+        <div class="dia-label">DÍA ${d - 1}</div>
+        <div class="fecha-label">${d} de ${mes}</div>
+        <div class="card-titulo">${data.titulo}</div>
+        <div class="card-preview">Disponible el ${d} de julio</div>
+      `;
+    }
+    
+    card.innerHTML = html;
+    
+    if (unlocked) {
+      card.addEventListener('click', () => abrirModal(data, d));
+    }
+    
+    grid.appendChild(card);
+  }
+  
+  // Update counter
+  const contador = document.getElementById('contadorDias');
+  const todayNum = today.day;
+  if (today.year > 2026 || today.month > 7) {
+    contador.textContent = '🎉 Todas las cartas están disponibles';
+  } else if (today.month === 7 && today.year === 2026) {
+    const nextDay = todayNum + 1;
+    if (nextDay <= 19) {
+      contador.textContent = `📅 Próxima carta: ${nextDay} de julio • Desbloqueadas: ${unlockedCount}/${totalCount}`;
+    } else {
+      contador.textContent = `🎉 ¡Todas las cartas desbloqueadas! (${unlockedCount}/${totalCount})`;
+    }
+  } else {
+    contador.textContent = `📅 Primera carta: 2 de julio • ${totalCount} cartas esperando 💕`;
+  }
+}
+
+
+// ================================================================
+// 📬 MODAL
+// ================================================================
+
+let currentModalData = null;
+
+function abrirModal(data, dia) {
+  currentModalData = data;
+  document.getElementById('modalTitulo').textContent = data.titulo;
+  document.getElementById('modalFecha').textContent = `${dia} de julio, 2026`;
+  document.getElementById('modalContenido').innerHTML = data.contenido.replace(/\n/g, '<br>');
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Eventos del modal
+document.getElementById('modalClose').addEventListener('click', cerrarModal);
+document.getElementById('modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modal')) cerrarModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') cerrarModal();
+});
+
+
+// ================================================================
+// 💕 FLOATING HEARTS
+// ================================================================
+
+function crearCorazonesFlotantes() {
+  const container = document.getElementById('floatingHearts');
+  const hearts = ['💕', '💖', '💗', '💝', '✨'];
+  
+  for (let i = 0; i < 20; i++) {
+    const el = document.createElement('div');
+    el.className = 'floating-heart';
+    el.textContent = hearts[i % hearts.length];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.fontSize = (12 + Math.random() * 24) + 'px';
+    el.style.animationDuration = (10 + Math.random() * 20) + 's';
+    el.style.animationDelay = (Math.random() * 20) + 's';
+    container.appendChild(el);
+  }
+}
+
+
+// ================================================================
+// 🚀 INIT
+// ================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderPixelArt();
+  cargarCartaPrincipal();
+  cargarCartasDiarias();
+  crearCorazonesFlotantes();
+  
+  // Re-render pixel art on resize (optional, good for responsive)
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(renderPixelArt, 200);
+  });
+});
+</script>
+</body>
+</html>
